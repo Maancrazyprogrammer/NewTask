@@ -1,0 +1,38 @@
+
+
+<h1>Generate Report</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Account Name</th>
+      <th scope="col">Action</th>
+      
+
+     
+
+    
+    </tr>
+  </thead>
+  <tbody>
+    <% @accounts.each do |ac| %>
+        
+
+    <tr>
+      <td><%= ac.id%></td>
+      
+      <td><%= ac.name%></td>
+          <td><%= link_to 'Generate Report', report_path(ac), class: 'btn btn-primary' %></td>
+       
+  </div>
+
+
+    </tr>
+  
+    <% end %>
+  </tbody>
+</table>
+          <td><%= link_to 'Back', companies_path, class: 'btn btn-primary' %></td>
+
+
+

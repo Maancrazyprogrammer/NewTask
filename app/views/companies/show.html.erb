@@ -1,0 +1,126 @@
+
+<h1>Company Detail</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Starting Date</th>
+      <th scope="col">Opening Balance</th>
+      
+      
+
+
+    
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+
+<td><%= @company.name %></td>
+<td><%= @company.start_date %></td>
+<td><%= @company.opening_balance %></td>
+
+    </tr>
+  
+    
+  </tbody>
+</table>
+
+
+<h1>Employees<h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+
+
+
+    
+    </tr>
+  </thead>
+  <tbody>
+   <% @users.each do |user|%>
+    <tr>
+     <td><%= user.id %></td>
+     <td><%= user.name %></td>
+     <td><%= user.email %></td>
+     <td><%= user.role %></td>
+      
+    
+    </tr>
+  
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Existing Accounts</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">starting_date</th>
+      <th scope="col">col_balance</th>
+      <th scope="col">opening_balance</th>
+
+
+
+
+    
+    </tr>
+  </thead>
+  <tbody>
+<% @accounts.each do |account| %>
+   <tr>
+    <td><%= account.id %></td>
+    <td><%= account.name %></td>
+    <td><%= account.starting_date %></td>
+    <td><%= account.col_balance %></td>
+    <td><%= account.opening_balance %></td>
+
+    <!-- Display other account details -->
+   </tr>
+<% end %>
+</tbody>
+</table>
+
+  <div>
+    <!-- Display other payment details -->
+  </div>
+<h2>Company payments</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">payment Amount</th>
+      <th scope="col">Sender</th>
+      <th scope="col">Receiver</th>
+    
+
+
+
+
+    
+    </tr>
+  </thead>
+  <tbody>
+
+<% @payments.each do |payment| %>
+   <tr>
+    <td><%= payment.id %></td>
+    <td><%= payment.amount %></td>
+     <td><%= payment.sender.name if payment.sender %></td>
+    <td><%= payment.receiver.name if payment.receiver %></td>
+
+    <!-- Display other account details -->
+   </tr>
+
+<% end %>
+</tbody>
+</table>
+
+          <td><%= link_to 'Back', companies_path, class: 'btn btn-primary' %></td>

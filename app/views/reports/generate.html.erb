@@ -1,0 +1,48 @@
+<!-- app/views/reports/generate.html.erb -->
+<h1>Report</h1>
+
+<%= form_tag(reports_generate_path, method: :post) do %>
+  <div>
+    <%= label_tag 'Account Name' %>
+    <%= text_field_tag 'account_name' %>
+  </div>
+
+  <div>
+    <%= label_tag 'From Date' %>
+    <%= date_field_tag 'from_date' %>
+  </div>
+
+  <div>
+    <%= label_tag 'To Date' %>
+    <%= date_field_tag 'to_date' %>
+  </div>
+
+  <%= submit_tag 'Generate Report', class: 'btn btn-primary' %>
+<% end %>
+
+<% if @account.present? %>
+  <h2>Account: <%= @account.name %></h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Payment ID</th>
+        <th>Amount</th>
+        <th>Sender</th>
+        <th>Receiver</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @payments.each do |payment| %>
+        <tr>
+          <td><%= payment.id %></td>
+          <td><%= payment.amount %></td>
+          <td><%= payment.sender.name if payment.sender %></td>
+          <td><%= payment.receiver.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <p>Closing Balance: <%= @closing_balance %></p>
+<% end %>

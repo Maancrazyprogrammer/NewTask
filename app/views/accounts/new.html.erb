@@ -1,0 +1,31 @@
+<h2>Create New Accounts</h2>
+
+<!-- app/views/accounts/_form.html.erb -->
+<%= form_with(model: @account, url: company_accounts_path(@company), method: :post) do |form| %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :starting_date %>
+    <%= form.date_field :starting_date %>
+  </div>
+
+  <div>
+    <%= form.label :col_balance %>
+    <%= form.number_field :col_balance %>
+  </div>
+
+  <div>
+    <%= form.label :opening_balance %>
+    <%= form.number_field :opening_balance %>
+  </div>
+    <%= form.hidden_field :company_id, value: @company.id %>
+
+  <div>
+    <%= form.submit 'Create Account' %>
+  </div>
+<% end %>
+          <td><%= link_to 'Back', companies_path, class: 'btn btn-primary' %></td>

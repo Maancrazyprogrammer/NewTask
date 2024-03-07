@@ -1,0 +1,52 @@
+
+ <h1>Company Details</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Company Name</th>
+      <th scope="col">Starting Date</th>
+      <th scope="col">Opening Balance</th>
+      <th scope="col">New Account</th>
+      <th scope="col">New Payment</th>
+
+     
+
+    
+    </tr>
+  </thead>
+  <tbody>
+      <% @companies.each do |company| %>
+    <tr>
+      
+        <td><%= company.id %></td>
+        <td><%= link_to company.name, company_path(company) %></td>
+         <td><%= company.start_date %></td>
+         <td><%= company.opening_balance %></td>
+       <td>
+        <% if can? :new, Account %>
+
+          <%= link_to 'Create Account', new_company_account_path(company), class: 'btn btn-primary' %>
+<% end %></td>
+<td>
+        <% if can? :new, Payment %>
+
+         <%= link_to 'New Payment', new_company_payment_path(company), class: 'btn btn-primary' %>
+<% end %></td>
+       
+  </div>
+
+
+    </tr>
+  
+    <% end %>
+  </tbody>
+</table>
+ <% if can? :read, Report %>
+       <td>  <%= link_to 'Generate Reports', reports_path, class: 'btn btn-primary' %></td>
+  
+<% end %>
+      <% if can? :new, Company  %>
+       <td>  <%= link_to 'New Company', new_company_path, class: 'btn btn-primary' %></td>
+ 
+<% end %>

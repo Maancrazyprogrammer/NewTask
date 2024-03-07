@@ -1,0 +1,27 @@
+<!-- app/views/payments/_form.html.erb -->
+<%= form_with(model: [@company, @payment], url: company_payments_path(@company), method: :post) do |form| %>
+  <div>
+    <%= form.label :date %>
+    <%= form.date_field :date %>
+  </div>
+
+  <div>
+    <%= form.label :amount %>
+    <%= form.text_field :amount %>
+  </div>
+
+  <div>
+    <%= form.label :sender_id %>
+    <%= form.collection_select(:sender_id, @company.accounts, :id, :name, prompt: 'Select Sender') %>
+  </div>
+
+  <div>
+    <%= form.label :receiver_id %>
+    <%= form.collection_select(:receiver_id, @company.accounts, :id, :name, prompt: 'Select Receiver') %>
+  </div>
+
+  <div>
+    <%= form.submit 'Create Payment' %>
+  </div>
+<% end %>
+          <td><%= link_to 'Back', companies_path, class: 'btn btn-primary' %></td>

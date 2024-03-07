@@ -1,0 +1,39 @@
+<!-- app/views/reports/show.html.erb -->
+<h1>Report for Account: <%= @account.name %></h1>
+
+<%= form_tag({ controller: 'reports', action: 'show' }, method: :get) do %>
+  <div>
+    <%= label_tag 'Select Date' %>
+    <%= date_field_tag 'date', params[:date] %>
+  </div>
+
+  <%= hidden_field_tag 'account_name', @account.name %>
+
+  <%= submit_tag 'Filter by Date', class: 'btn btn-primary' %>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Payment ID</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Sender</th>
+      <th scope="col">Receiver</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @payments.each do |payment| %>
+      <tr>
+        <td><%= payment.id %></td>
+        <td><%= payment.amount %></td>
+        <td><%= payment.sender.name if payment.sender %></td>
+        <td><%= payment.receiver.name %></td>
+
+      </tr>
+<p>Closing Balance: <%= @closing_balance %></p>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to 'Back to Reports', reports_path, class: 'btn btn-primary' %>

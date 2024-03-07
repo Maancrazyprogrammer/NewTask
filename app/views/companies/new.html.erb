@@ -1,0 +1,45 @@
+
+
+<%= form_with(model: @company, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |form| %>
+<% if @company.errors.any? %>
+    <div>
+      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company is already registered: try another unique name</h2>
+      <ul>
+        <% @company.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<h3>Registered New Company</h3>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.label :start_date %>
+  <%= form.date_field :start_date %>
+
+  <%= form.label :opening_balance %>
+  <%= form.number_field :opening_balance %>
+
+  <%= form.hidden_field :id, value: @company_Temp_Id %>
+
+  <%# here implement nested form %>
+
+   <template data-nested-form-target="template">
+    <%= form.fields_for :users, User.new, child_index: 'NEW_RECORD' do |todo_fields| %>
+      <%= render "companies/companies_user_form", f: todo_fields %>
+    <% end %>
+    
+  </template>
+  <!-- Inserted elements will be injected before that target. -->
+<h3>Registered New Employees to Company</h3>
+    <div data-nested-form-target="target"></div>
+
+    <button type="button" data-action="nested-form#add">Add Employees</button>
+
+  <%# end of nested form %>
+    <%= form.submit %>
+  <% end %>
+
+<%# <%= link_to 'back' , company_path,class: 'btn btn-primary' %> 
+          <td><%= link_to 'Back', companies_path, class: 'btn btn-primary' %></td>
