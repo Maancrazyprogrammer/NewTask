@@ -1,38 +1,25 @@
 
-
+<!-- app/views/reports/index.html.erb -->
 <h1>Generate Report</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Account Name</th>
-      <th scope="col">Action</th>
-      
 
-     
+<%= form_with(url: report_path(id: 'show'), method: :get) do |form| %>
 
-    
-    </tr>
-  </thead>
-  <tbody>
-    <% @accounts.each do |ac| %>
-        
-
-    <tr>
-      <td><%= ac.id%></td>
-      
-      <td><%= ac.name%></td>
-          <td><%= link_to 'Generate Report', report_path(ac), class: 'btn btn-primary' %></td>
-       
-  </div>
-
-
-    </tr>
+    <%= form.label :account_id, 'Select Account' %>
+    <%= form.collection_select :account_id, @accounts, :id, :name %>
   
-    <% end %>
-  </tbody>
-</table>
+
+
+    <%= form.label :from_date, 'From Date' %>
+    <%= form.date_field :from_date %>
+
+
+
+    <%= form.label :to_date, 'To Date' %>
+    <%= form.date_field :to_date %>
+
+
+
+    <%= form.submit 'Generate Report' %>
+
+<% end %>
           <td><%= link_to 'Back', companies_path, class: 'btn btn-primary' %></td>
-
-
-

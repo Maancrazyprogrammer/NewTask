@@ -9,6 +9,7 @@
       <th scope="col">Opening Balance</th>
       <th scope="col">New Account</th>
       <th scope="col">New Payment</th>
+      <th scope="col">Report</th>
 
      
 
@@ -33,7 +34,7 @@
 
          <%= link_to 'New Payment', new_company_payment_path(company), class: 'btn btn-primary' %>
 <% end %></td>
-       
+        <td>  <%= link_to 'Report', reports_path, class: 'btn btn-primary' %></td>
   </div>
 
 
@@ -42,11 +43,15 @@
     <% end %>
   </tbody>
 </table>
- <% if can? :read, Report %>
-       <td>  <%= link_to 'Generate Reports', reports_path, class: 'btn btn-primary' %></td>
-  
-<% end %>
+ 
+   
+<!-- Rest of the view remains the same -->
+
       <% if can? :new, Company  %>
        <td>  <%= link_to 'New Company', new_company_path, class: 'btn btn-primary' %></td>
  
 <% end %>
+
+      
+       
+ 
